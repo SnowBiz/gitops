@@ -26,6 +26,7 @@ spec:
   template:
     metadata:
       name: pythondemo
+      namespace: argocd
     spec:
       project: app-samples
       source:
