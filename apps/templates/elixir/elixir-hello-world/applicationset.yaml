@@ -30,7 +30,7 @@ spec:
     spec:
       project: app-samples
       source:
-        repoURL: https://github.com/SnowBiz/elixirdemo.git
+        repoURL: https://github.com/SnowBiz/phoenix_helloworld.git
         targetRevision: HEAD
         path: kubernetes/helm
         helm: 
