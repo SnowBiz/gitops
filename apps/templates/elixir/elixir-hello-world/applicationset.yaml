@@ -25,7 +25,6 @@ spec:
         url: https://kubernetes.default.svc
   template:
     metadata:
-      #name: '{{cluster}}-elixirdemo'
       name: elixirdemo
     spec:
       project: app-samples
@@ -35,7 +34,7 @@ spec:
         path: kubernetes/helm
         helm: 
           valueFiles:
-           #- values-{{cluster}}-elixirdemo.yaml
+           - values.yaml
       destination:
         server: '{{url}}'
         namespace: app-sample
