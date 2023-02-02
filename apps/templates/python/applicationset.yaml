@@ -17,6 +17,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: pythondemo
+  namespace: argocd
 spec:
   generators:
   - list:
