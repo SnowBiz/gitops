@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: app-samples
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destinations:
+    - namespace: "app-sample"
+      server: "*"
+  sourceRepos:
+    - "*"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: pythondemo
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: in-cluster
+        url: https://kubernetes.default.svc
+  template:
+    metadata:
+      #name: '{{cluster}}-pythondemo'
+      name: pythondemo
+    spec:
+      project: app-samples
+      source:
+        repoURL: https://github.com/SnowBiz/pythondemo.git
+        targetRevision: HEAD
+        path: kubernetes/helm
+        helm: 
+          valueFiles:
+           #- values-{{cluster}}-pythondemo.yaml
+      destination:
+        server: '{{url}}'
+        namespace: app-sample
+        
